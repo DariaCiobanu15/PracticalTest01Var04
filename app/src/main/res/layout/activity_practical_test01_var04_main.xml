@@ -35,6 +35,7 @@
                 android:layout_height="48dp"
                 android:ems="10"
                 android:inputType="text"
+                android:saveEnabled="false"
                 android:text="Perfect Student" />
         </LinearLayout>
 
@@ -54,6 +55,7 @@
                 android:layout_height="48dp"
                 android:ems="10"
                 android:inputType="text"
+                android:saveEnabled="false"
                 android:text="342C1" />
         </LinearLayout>
 

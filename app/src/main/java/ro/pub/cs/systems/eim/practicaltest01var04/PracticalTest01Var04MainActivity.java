@@ -64,7 +64,38 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity {
 
         informationTextView = (TextView)findViewById(R.id.textView);
 
+    }
 
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString(Constants.STUDENT_NAME, StudentNameEditText.getText().toString());
+        savedInstanceState.putString(Constants.GROUP, GroupEditText.getText().toString());
+        savedInstanceState.putBoolean(Constants.STUDENT_CHECKBOX, StudentCheckBox.isChecked());
+        savedInstanceState.putBoolean(Constants.GROUP_CHECKBOX, GroupCheckBox.isChecked());
+    }
 
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        if (savedInstanceState.containsKey(Constants.STUDENT_NAME)) {
+            StudentNameEditText.setText(savedInstanceState.getString(Constants.STUDENT_NAME));
+        } else {
+            StudentNameEditText.setText("");
+        }
+        if (savedInstanceState.containsKey(Constants.GROUP)) {
+            GroupEditText.setText(savedInstanceState.getString(Constants.GROUP));
+        } else {
+            GroupEditText.setText("");
+        }
+        if (savedInstanceState.containsKey(Constants.STUDENT_CHECKBOX)) {
+            StudentCheckBox.setChecked(savedInstanceState.getBoolean(Constants.STUDENT_CHECKBOX));
+        } else {
+            StudentCheckBox.setChecked(false);
+        }
+        if (savedInstanceState.containsKey(Constants.GROUP_CHECKBOX)) {
+            GroupCheckBox.setChecked(savedInstanceState.getBoolean(Constants.GROUP_CHECKBOX));
+        } else {
+            GroupCheckBox.setChecked(false);
+        }
     }
 }
