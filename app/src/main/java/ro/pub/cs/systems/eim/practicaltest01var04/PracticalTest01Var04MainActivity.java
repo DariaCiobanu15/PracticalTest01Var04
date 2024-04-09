@@ -1,5 +1,6 @@
 package ro.pub.cs.systems.eim.practicaltest01var04;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class PracticalTest01Var04MainActivity extends AppCompatActivity {
@@ -20,6 +23,8 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity {
     private CheckBox GroupCheckBox;
 
     private TextView informationTextView;
+
+    private ActivityResultLauncher<Intent> activityResultLauncher;
 
     private ButtonClickListener buttonClickListener = new ButtonClickListener();
 
@@ -42,7 +47,10 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity {
                     }
                 }
             } else if (view.getId() == R.id.buttonNavigateToSecondaryActivity) {
-                Toast.makeText(getApplicationContext(), "Navigate to secondary activity", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), PracticalTest01Var04SecondaryActivity.class);
+                intent.putExtra(Constants.STUDENT_NAME, StudentNameEditText.getText().toString());
+                intent.putExtra(Constants.GROUP, GroupEditText.getText().toString());
+                activityResultLauncher.launch(intent);
             }
         }
     }
@@ -63,6 +71,17 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity {
         displayInformationButton.setOnClickListener(buttonClickListener);
 
         informationTextView = (TextView)findViewById(R.id.textView);
+
+        activityResultLauncher = registerForActivityResult(new
+                ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == RESULT_OK) {
+                Toast.makeText(this, "The activity returned with result OK " +
+                        result.getResultCode(), Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "The activity returned with result CANCELED " +
+                        result.getResultCode(), Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 
@@ -96,6 +115,14 @@ public class PracticalTest01Var04MainActivity extends AppCompatActivity {
             GroupCheckBox.setChecked(savedInstanceState.getBoolean(Constants.GROUP_CHECKBOX));
         } else {
             GroupCheckBox.setChecked(false);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == 1) {
+            Toast.makeText(this, "The activity returned with result " + resultCode, Toast.LENGTH_LONG).show();
         }
     }
 }
