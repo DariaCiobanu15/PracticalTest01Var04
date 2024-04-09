@@ -7,13 +7,68 @@
     android:layout_height="match_parent"
     tools:context=".PracticalTest01Var04MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="NAVIGATE TO SECONDARY ACTIVITY" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/checkBoxStudentName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/editTextStudentName"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="text"
+                android:text="Perfect Student" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/checkBoxGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/editTextGroup"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:ems="10"
+                android:inputType="text"
+                android:text="342C1" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonDisplayInformation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="DISPLAY INFORMATION" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Perfect Student 342C1" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
